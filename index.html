@@ -3,164 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Halita - Trabajo de Cono</title>
+    <title>Trabajo sobre la Halita</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
-            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fbc2eb 25%, #a18cd1 50%, #8ec5fc 75%, #74ebd5 100%);
+            background-size: 400% 400%;
+            color: #111111;
+            overflow: hidden;
+            animation: background-flow 18s ease infinite;
         }
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
-            margin-bottom: 50px;
+            display: flex;
+            flex-direction: row;
+            width: 400vw;
+            min-height: 100vh;
+            transition: transform 0.6s ease;
+            transform: translateX(0);
+        }
+        .section {
+            min-width: 100vw;
+            height: 100vh;
+            padding: 40px 40px 110px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 24px;
+            margin: 20px 10px;
+            box-shadow: 0 18px 38px rgba(0,0,0,0.18);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            backdrop-filter: blur(14px);
+        }
+        .section:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        .action-button {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff3d3d, #c70000);
+            border: 3px solid #ffffff;
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            padding: 18px 34px;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 15px 30px rgba(199,0,0,0.5);
+            z-index: 20;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .action-button:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 18px 35px rgba(199,0,0,0.7);
+        }
+        .action-button:active {
+            transform: translateX(-50%) scale(0.98);
         }
         h1 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: 2.5em;
+            font-size: 3rem;
             margin-bottom: 20px;
-            position: relative;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 0 0 20px #00d4ff;
         }
         h1::after {
             content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #3498db, #2980b9);
-            animation: move 3s ease-in-out infinite;
-        }
-        @keyframes move {
-            0%, 100% { transform: translateX(-50%) scaleX(1); }
-            50% { transform: translateX(-50%) scaleX(1.2); }
-        }
-        .section {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-left: 5px solid #3498db;
-            background: rgba(52, 152, 219, 0.05);
-            border-radius: 5px;
-            transition: transform 0.3s ease;
-        }
-        .section:hover {
-            transform: translateY(-5px);
+            display: block;
+            width: 140px;
+            margin: 12px auto 0;
+            height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
         }
         h2 {
-            color: #34495e;
-            font-size: 1.8em;
-            margin-bottom: 10px;
+            color: #111111;
+            margin-bottom: 20px;
+            text-align: center;
         }
-        p {
-            line-height: 1.6;
-            margin-bottom: 10px;
+        p, li {
+            line-height: 1.7;
+            font-size: 1.1rem;
+            text-align: center;
+            color: #111111;
         }
-        .highlight {
-            font-weight: bold;
-            color: #e74c3c;
-            animation: glow 2s ease-in-out infinite alternate;
+        .box {
+            background: rgba(255,255,255,0.85);
+            border-left: 6px solid rgba(255,93,93,0.95);
+            border-radius: 18px;
+            padding: 24px;
+            margin: 24px 0;
+            width: 100%;
+            max-width: 640px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.16);
+            backdrop-filter: blur(8px);
         }
-        @keyframes glow {
-            from { text-shadow: 0 0 5px #e74c3c; }
-            to { text-shadow: 0 0 20px #e74c3c, 0 0 30px #e74c3c; }
+        .important {
+            color: #ff7d7d;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255,125,125,0.5);
+        }
+        ul {
+            text-align: left;
+            margin: 0 auto;
+            max-width: 520px;
+            color: #2a2a2a;
+        }
+        .map {
+            width: 100%;
+            max-width: 840px;
+            height: 460px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 184, 108, 0.28), rgba(255, 106, 106, 0.18) 35%, rgba(84, 165, 255, 0.14) 70%, rgba(47, 72, 107, 0.85));
+            border: 2px solid rgba(255,255,255,0.75);
+            border-radius: 18px;
+            position: relative;
+            margin: 20px 0;
+            box-shadow: 0 16px 34px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .map-title {
+            position: absolute;
+            top: 16px;
+            left: 20px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 14px rgba(255,255,255,0.35);
+            z-index: 5;
+        }
+        .map svg {
+            width: 100%;
+            height: 100%;
+        }
+        .map-zone {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.95);
+            border: 2px solid rgba(0,0,0,0.12);
+            box-shadow: 0 0 18px rgba(255,255,255,0.35);
+            z-index: 4;
+            animation: pulse 2s infinite ease-in-out;
+        }
+        .halite-image {
+            width: min(460px, 90%);
+            margin: 0 auto 26px;
+            padding: 18px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, #2d3a50 0%, #395171 40%, #4d6d90 100%);
+            border: 1px solid rgba(255,255,255,0.18);
+            box-shadow: 0 14px 32px rgba(0,0,0,0.22);
+        }
+        .halite-image svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.2));
+        }
+        .accent-line {
+            width: 60%;
+            height: 3px;
+            margin: 20px auto 30px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 164, 174, 0.95), rgba(130, 205, 255, 0.95), rgba(255, 255, 255, 0));
+            background-size: 240% 100%;
+            animation: accent-slide 3.8s ease-in-out infinite;
         }
         .location {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
+            position: absolute;
+            background: rgba(255,255,255,0.95);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+            color: #111;
+            font-weight: 700;
+            z-index: 4;
         }
-        .arrow {
-            font-size: 1.5em;
-            color: #27ae60;
-            margin-right: 10px;
+        .location::before {
+            content: '➤';
+            position: absolute;
+            left: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff3d3d;
+            font-size: 1rem;
             animation: bounce 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+            40% { transform: translateY(-5px); }
+            60% { transform: translateY(-3px); }
         }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 10px;
-            margin-top: 30px;
+        @keyframes accent-slide {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 200% 50%; }
         }
-        .wave {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%233498db"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%233498db"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%233498db"></path></svg>') no-repeat center bottom;
-            background-size: cover;
+        @keyframes background-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
+        /* Posiciones en el mapa */
+        .usa { top: 20%; left: 20%; }
+        .canada { top: 12%; left: 25%; }
+        .europa { top: 22%; left: 51%; }
+        .oriente { top: 29%; left: 60%; }
+        .china { top: 25%; left: 74%; }
+        .bolivia { top: 64%; left: 34%; }
+        .australia { top: 77%; left: 78%; }
     </style>
 </head>
 <body>
-    <div class="wave"></div>
     <div class="container">
-        <h1>La Halita</h1>
-        
         <div class="section">
-            <h2>Introducción</h2>
-            <p>La halita, también conocida como sal de roca, es un mineral compuesto principalmente por cloruro de sodio (NaCl). Es uno de los minerales más comunes y conocidos en la Tierra.</p>
-        </div>
-        
-        <div class="section">
-            <h2>Dureza</h2>
-            <p>La dureza de la halita en la escala de Mohs es de <span class="highlight">2.5</span>. Esto significa que es relativamente blanda y puede rayarse fácilmente con una uña.</p>
-        </div>
-        
-        <div class="section">
-            <h2>Primer Descubrimiento</h2>
-            <p>La halita ha sido conocida desde la antigüedad. Fue descrita formalmente como mineral por el naturalista romano Plinio el Viejo en el siglo I d.C., aunque su uso como sal data de miles de años antes.</p>
-        </div>
-        
-        <div class="section">
-            <h2>Usos Principales</h2>
-            <p>La halita se utiliza principalmente en la industria alimentaria como sal de mesa, en la producción de cloro y soda cáustica, en la desalinización de agua, y en la conservación de alimentos. También tiene aplicaciones en la medicina y la química.</p>
-        </div>
-        
-        <div class="section">
-            <h2>Localizaciones</h2>
-            <div class="location">
-                <span class="arrow">➡️</span>
-                <p><strong>Mar Muerto (Israel/Jordania)</strong>: Uno de los depósitos más famosos de halita, con altas concentraciones de sal.</p>
+            <h1>Halita: el mineral de la sal</h1>
+            <div class="halite-image">
+                <svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="glassMain" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fefefe" stop-opacity="0.98"/>
+                            <stop offset="40%" stop-color="#e9f1fb" stop-opacity="0.92"/>
+                            <stop offset="100%" stop-color="#c6d3e3" stop-opacity="0.78"/>
+                        </linearGradient>
+                        <linearGradient id="glassShadow" x1="100%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#d8e3f2" stop-opacity="0.98"/>
+                            <stop offset="100%" stop-color="#9aaec3" stop-opacity="0.76"/>
+                        </linearGradient>
+                        <linearGradient id="glassDetail" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                            <stop offset="100%" stop-color="#d7e2ef" stop-opacity="0.75"/>
+                        </linearGradient>
+                        <linearGradient id="spark" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M145 40 L375 70 L425 170 L378 248 L165 282 L95 178 Z" fill="url(#glassMain)" stroke="#8695a9" stroke-width="10"/>
+                    <path d="M115 190 L210 70 L345 110 L365 225 L280 265 L165 282 Z" fill="url(#glassShadow)" stroke="#9aa9bd" stroke-width="8"/>
+                    <path d="M160 90 L290 60 L420 130 L365 200 L230 245 Z" fill="url(#glassDetail)" stroke="#b8c7d8" stroke-width="6"/>
+                    <path d="M125 200 L235 150 L315 190 L270 255 L195 270 Z" fill="rgba(255,255,255,0.86)" stroke="#c6d4e4" stroke-width="5"/>
+                    <polygon points="320,80 360,98 345,148 305,132" fill="rgba(255,255,255,0.9)"/>
+                    <polygon points="170,220 220,205 265,245 220,270" fill="rgba(255,255,255,0.84)"/>
+                    <polygon points="180,110 250,90 320,145 230,180" fill="rgba(240,246,252,0.92)" stroke="#d8e3ee" stroke-width="4"/>
+                    <path d="M110 170 L180 120 L280 175 L230 230 Z" fill="rgba(245,249,255,0.9)" stroke="#cbd7e5" stroke-width="4"/>
+                    <line x1="140" y1="55" x2="330" y2="135" stroke="rgba(255,255,255,0.88)" stroke-width="4"/>
+                    <line x1="190" y1="215" x2="330" y2="240" stroke="rgba(255,255,255,0.75)" stroke-width="3"/>
+                    <circle cx="130" cy="80" r="10" fill="url(#spark)"/>
+                    <circle cx="380" cy="150" r="8" fill="url(#spark)"/>
+                    <ellipse cx="210" cy="280" rx="18" ry="10" fill="rgba(255,255,255,0.92)"/>
+                </svg>
             </div>
-            <div class="location">
-                <span class="arrow">➡️</span>
-                <p><strong>Mina de Sal de Wieliczka (Polonia)</strong>: Una mina histórica donde se extrae halita desde la Edad Media.</p>
-            </div>
-            <div class="location">
-                <span class="arrow">➡️</span>
-                <p><strong>Salinas Grandes (Argentina)</strong>: Un lago salado con depósitos extensos de halita.</p>
-            </div>
-            <div class="location">
-                <span class="arrow">➡️</span>
-                <p><strong>Desierto de Sal de Utah (Estados Unidos)</strong>: Grandes extensiones de halita en el Great Salt Lake.</p>
+            <div class="accent-line"></div>
+            <div class="box">
+                <h2>¿Qué es la halita?</h2>
+                <p>La halita es un mineral formado principalmente por cloruro de sodio (NaCl). Se conoce como sal gema o sal de roca. Se forma por la evaporación de agua salada en lagos, mares y salinas.</p>
             </div>
         </div>
-        
+
         <div class="section">
-            <h2>Propiedades Adicionales</h2>
-            <p>La halita cristaliza en el sistema cúbico, tiene un sabor salado característico y es soluble en agua. Su densidad es de aproximadamente 2.16 g/cm³, y puede formar cristales transparentes o coloreados por impurezas.</p>
+            <h2>Propiedades de la halita</h2>
+            <div class="box">
+                <ul>
+                    <li><strong>Color:</strong> Blanco, incoloro o ligeramente grisáceo.</li>
+                    <li><strong>Brillo:</strong> Vítreo, parecido al vidrio cuando el cristal está limpio.</li>
+                    <li><strong>Textura:</strong> Granulada, cristalina y frágil.</li>
+                    <li><strong>Dureza:</strong> 2 - 2.5 en la escala de Mohs (se raya con la uña).</li>
+                    <li><strong>Clasificación:</strong> Mineral haluro / mineral evaporítico.</li>
+                    <li><strong>Valor:</strong> Muy importante; se usa como sal comestible, en la industria química, para deshielo y en conservación de alimentos.</li>
+                </ul>
+            </div>
         </div>
-        
-        <div class="footer">
-            <p>Trabajo elaborado con elegancia y precisión. © 2026</p>
+
+        <div class="section">
+            <h2>Uso y sector donde se usa</h2>
+            <div class="box">
+                <ul>
+                    <li><strong>Uso alimentario:</strong> Sal de mesa, sazón y conservación de alimentos.</li>
+                    <li><strong>Sector químico:</strong> Producción de cloro, soda cáustica y carbonato de sodio.</li>
+                    <li><strong>Sector industrial:</strong> Deshielo de carreteras, tratamiento de agua y fabricación de productos químicos.</li>
+                    <li><strong>Sector agrícola:</strong> Producción de fertilizantes y sales especiales.</li>
+                    <li><strong>Sector energético/petrolero:</strong> Almacenamiento de gas y petróleo en estructuras de sal.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Zonas donde hay halita</h2>
+            <div class="map">
+                <div class="map-title">Procedencia (señálese en el mapa)</div>
+                <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="1000" height="500" fill="#0f3460"/>
+                    <!-- América del Norte -->
+                    <path d="M60,115 C100,80 150,70 200,80 C250,90 280,130 260,170 C240,205 210,220 170,210 C130,200 90,160 80,130 C70,120 62,117 60,115 Z" fill="none" stroke="#eee" stroke-width="3"/>
+                    <!-- América del Sur -->
+                    <path d="M190,225 C210,210 250,220 275,240 C300,270 310,310 290,345 C270,370 230,385 190,380 C170,360 160,330 165,295 C170,260 180,235 190,225 Z" fill="none" stroke="#eee" stroke-width="3"/>
+                    <!-- Europa y África -->
+                    <path d="M430,95 C460,85 500,85 530,100 C550,120 560,150 540,170 C520,185 490,185 470,170 C450,150 440,125 430,95 Z" fill="none" stroke="#eee" stroke-width="3"/>
+                    <path d="M450,170 C480,165 520,170 545,190 C565,215 570,260 545,295 C520,325 485,335 455,320 C430,300 425,260 430,220 C435,190 443,175 450,170 Z" fill="none" stroke="#eee" stroke-width="3"/>
+                    <!-- Asia -->
+                    <path d="M540,80 C600,70 650,72 690,90 C730,110 745,140 735,170 C720,195 690,210 660,205 C630,200 605,185 590,165 C575,145 570,115 540,80 Z" fill="none" stroke="#eee" stroke-width="3"/>
+                    <!-- Oceanía -->
+                    <path d="M780,280 C810,270 840,275 860,295 C875,320 865,345 840,350 C810,352 785,335 780,305 Z" fill="none" stroke="#eee" stroke-width="3"/>
+                    <!-- Antártida -->
+                    <path d="M15,440 C130,430 300,430 470,435 C640,440 810,435 985,445" fill="none" stroke="#eee" stroke-width="3"/>
+                </svg>
+                <div class="map-zone" style="top: 20%; left: 19%;"></div>
+                <div class="map-zone" style="top: 11%; left: 24%; background: rgba(255,205,86,0.95);"></div>
+                <div class="map-zone" style="top: 22%; left: 51%; background: rgba(97,218,251,0.95);"></div>
+                <div class="map-zone" style="top: 30%; left: 61%; background: rgba(255,183,77,0.95);"></div>
+                <div class="map-zone" style="top: 24%; left: 74%; background: rgba(104,255,105,0.95);"></div>
+                <div class="map-zone" style="top: 63%; left: 34%; background: rgba(112,128,255,0.95);"></div>
+                <div class="map-zone" style="top: 77%; left: 78%; background: rgba(255,99,71,0.95);"></div>
+                <div class="location usa" style="top: 18%; left: 22%;">Estados Unidos <br><span class="important">MÁS halita</span></div>
+                <div class="location canada" style="top: 9%; left: 28%;">Canadá</div>
+                <div class="location europa" style="top: 19%; left: 52%;">Europa Central</div>
+                <div class="location oriente" style="top: 27%; left: 62%;">Oriente Medio</div>
+                <div class="location china" style="top: 22%; left: 75%;">China</div>
+                <div class="location bolivia" style="top: 61%; left: 35%;">Bolivia</div>
+                <div class="location australia" style="top: 76%; left: 78%;">Australia</div>
+            </div>
+            <div class="footer">
+                <p>Presiona el botón rojo para cambiar de diapositiva.</p>
+            </div>
         </div>
     </div>
+    <button class="action-button" onclick="nextSlide()"></button>
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 4;
+        const container = document.querySelector('.container');
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            container.style.transform = `translateX(-${currentSlide * 100}vw)`;
+        }
+    </script>
 </body>
 </html>
